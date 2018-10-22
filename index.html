@@ -1,3 +1,4 @@
+<!-- browser-sync start --server --files="**/*" -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -42,36 +43,81 @@
             -webkit-transform: translateY(0%);
         }
     }
+    .slideLeft {
+    /* The name of the animation */
+    animation-name: slideLeft;
+    -webkit-animation-name: slideLeft; 
+    /* The duration of the animation */
+    animation-duration: 1s; 
+    -webkit-animation-duration: 1s;
+    /* Make the element visible */
+    visibility: visible; 
+    }
+
+    /* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+    @keyframes slideLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(60%);
+        } 
+        100% {
+            opacity: 1;
+            transform: translateX(0%);
+        } 
+    }
+    @-webkit-keyframes slideLeft {
+        0% {
+            opacity: 0;
+            -webkit-transform: translateX(70%);
+        } 
+        100% {
+            opacity: 1;
+            -webkit-transform: translateX(0%);
+        }
+    }
+
+    .removeLeft {
+    /* The name of the animation */
+    animation-name: removeLeft;
+    -webkit-animation-name: removeLeft; 
+    /* The duration of the animation */
+    animation-duration: 1s; 
+    -webkit-animation-duration: 1s;
+    /* Make the element visible */
+    visibility: visible; 
+    }
+
+    /* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+    @keyframes removeLeft {
+        0% {
+            opacity: 1;
+            transform: translateX(0%);
+        } 
+        100% {
+            opacity: 0;
+            transform: translateX(100%);
+        } 
+    }
+    @-webkit-keyframes removeLeft {
+        0% {
+            opacity: 1;
+            -webkit-transform: translateX(0%);
+        } 
+        100% {
+            opacity: 0;
+            -webkit-transform: translateX(100%);
+        }
+    }
     </style>
     <title>Login</title>
   </head>
 
   <body style="background-color: #263238;color:#ECEFF1;">
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#ECEFF1">
-  <a class="navbar-brand" href="#">Login Required</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
+    <div class="conntainer" style="padding-bottom:50%;"></div>
 
     <div class="container">
-        <div class="container" style="padding-top:20px;">
+        <div class="container">
             <div class="row">
                 <div class="col invisible"></div>
                 <div class="col-10 col-md-6 text-center">
@@ -83,29 +129,26 @@
 
         <div class="container" style="padding:20px;"></div>
 
-        <div class="container slideanim">
+        <div id="box" class="container slideanim">
             <div class="row">
                 <div class="col invisible"></div>
                 <form class="col-10 col-md-6">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="text-center" style="padding-top:16px;">
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-                </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="text-center" style="padding-top:16px;">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                    </div>
                 </form>
                 <div class="col invisible"></div>
             </div>
         </div>
-    </div>
-
-
 
 
 
@@ -120,12 +163,15 @@
 
     $(document).ready(function() {
        $(".slideanim").each(function(){
-        var pos = $(this).offset().top;
-        var winTop = $(window).scrollTop();
+            var pos = $(this).offset().top;
+            var winTop = $(window).scrollTop();
             if (pos < winTop + 600) {
-            $(this).addClass("slide");
+                $(this).addClass("slide");
+                this.addEventListener('webkitAnimationEnd', function() {
+                    $(this).addClass("visible");
+                    }, false);
             }
-        }); 
+        });
     });
 
     </script>
