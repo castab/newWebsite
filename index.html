@@ -1,10 +1,11 @@
 <!-- browser-sync start --server --files="**/*" -->
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="app" ng-controller="mainCtrl as vm">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#263238">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -114,14 +115,14 @@
 
   <body style="background-color: #263238;color:#ECEFF1;">
 
-    <div class="conntainer" style="padding-bottom:50%;"></div>
+    <div class="container" style="padding-bottom:20%;"></div>
 
     <div class="container">
         <div class="container">
             <div class="row">
                 <div class="col invisible"></div>
                 <div class="col-10 col-md-6 text-center">
-                    <i style="font-size:100px;color:#ECEFF1" class="fas fa-user-lock"></i>
+                    <i  ng-click="vm.changeBoolean();" style="font-size:100px;color:#ECEFF1" class="fas fa-user-lock"></i>
                 </div>
                 <div class="col invisible"></div>
             </div>
@@ -132,7 +133,7 @@
         <div id="box" class="container slideanim">
             <div class="row">
                 <div class="col invisible"></div>
-                <form class="col-10 col-md-6">
+                <form class="col-10 col-md-6" ng-if="vm.boolean">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -146,6 +147,17 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
                     </div>
                 </form>
+                <div class="col-10 col-md-6" ng-if="!vm.boolean"></div>
+                <div class="col invisible"></div>
+            </div>
+        </div>
+
+        <div class="container {{vm.class}}" style="padding-top:20px;">
+            <div class="row">
+                <div class="col invisible"></div>
+                <div class="col-10 col-md-6 text-center">
+                    <i class="fas fa-user-lock"></i>
+                </div>
                 <div class="col invisible"></div>
             </div>
         </div>
@@ -159,20 +171,46 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
     <script>                
 
-    $(document).ready(function() {
-       $(".slideanim").each(function(){
-            var pos = $(this).offset().top;
-            var winTop = $(window).scrollTop();
-            if (pos < winTop + 600) {
-                $(this).addClass("slide");
-                this.addEventListener('webkitAnimationEnd', function() {
-                    $(this).addClass("visible");
-                    }, false);
+    
+
+    (function () {
+        
+
+        angular.module('app', [])
+        .controller('mainCtrl', function($scope, $http) {
+            vm = this;
+            vm.boolean = true;
+            vm.class = "";
+
+            vm.changeBoolean = function() {
+                vm.boolean = !vm.boolean;
+                vm.class = "slide";
             }
-        });
-    });
+
+            $(document).ready(function() {
+            $(".slideanim").each(function(){
+                    var pos = $(this).offset().top;
+                    var winTop = $(window).scrollTop();
+                    if (pos < winTop + 600) {
+                        $(this).addClass("slide");
+                        this.addEventListener('webkitAnimationEnd', function() {
+                            var elem = angular.element(document.querySelector('[ng-app]'));
+                            var injector = elem.injector();
+                            var $rootScope = injector.get('$rootScope');
+                            $rootScope.$apply(function() {
+                                //vm.changeBoolean();
+                                
+                            })
+                            }, false);
+                    }
+                });
+            });
+        })
+
+    })();
 
     </script>
   </body>
