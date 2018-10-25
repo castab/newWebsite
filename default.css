@@ -1,0 +1,210 @@
+.slideanim {
+    visibility:hidden;
+}
+.slide {
+    /* The name of the animation */
+    animation-name: slide;
+    -webkit-animation-name: slide; 
+    /* The duration of the animation */
+    animation-duration: 1s; 
+    -webkit-animation-duration: 1s;
+    /* Make the element visible */
+    visibility: visible; 
+}
+.ng-enter {
+    /* The name of the animation */
+    animation-name: slide;
+    -webkit-animation-name: slide; 
+    /* The duration of the animation */
+    animation-duration: 500ms;
+    animation-delay: 500ms;
+    -webkit-animation-duration: 500ms;
+    /* Make the element visible */
+}
+.ng-enter-active {
+    opacity: 0;
+}
+.initial {
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+}
+
+/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    } 
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    } 
+}
+@-webkit-keyframes slide {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+    } 
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+    }
+}
+.slideLeft {
+/* The name of the animation */
+animation-name: slideLeft;
+-webkit-animation-name: slideLeft; 
+/* The duration of the animation */
+animation-duration: 1s; 
+-webkit-animation-duration: 1s;
+/* Make the element visible */
+visibility: visible; 
+}
+.ng-leave {
+/* The name of the animation */
+animation-name: removeDown;
+-webkit-animation-name: removeDown; 
+/* The duration of the animation */
+animation-duration: 500ms; 
+-webkit-animation-duration: 500ms;
+/* Make the element visible */
+visibility: visible; 
+}
+
+/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+@keyframes slideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(60%);
+    } 
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    } 
+}
+@-webkit-keyframes slideLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(70%);
+    } 
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0%);
+    }
+}
+
+.removeLeft {
+/* The name of the animation */
+animation-name: removeLeft;
+-webkit-animation-name: removeLeft; 
+/* The duration of the animation */
+animation-duration: 1s; 
+-webkit-animation-duration: 1s;
+/* Make the element visible */
+visibility: visible; 
+}
+
+/* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
+@keyframes removeLeft {
+    0% {
+        opacity: 1;
+        transform: translateX(0%);
+    } 
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    } 
+}
+@-webkit-keyframes removeLeft {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateX(0%);
+    } 
+    100% {
+        opacity: 0;
+        -webkit-transform: translateX(100%);
+    }
+}
+
+    @keyframes removeDown {
+    0% {
+        opacity: 1;
+        transform: translateY(0%);
+    } 
+    100% {
+        opacity: 0;
+        transform: translateY(60%);
+    } 
+}
+@-webkit-keyframes removeDown {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+    } 
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(60%);
+    }
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+display: none !important;
+}
+
+.lds-ellipsis {
+display: inline-block;
+position: relative;
+width: 64px;
+height: 64px;
+}
+.lds-ellipsis div {
+position: absolute;
+top: 27px;
+width: 11px;
+height: 11px;
+border-radius: 50%;
+background: #fff;
+animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+left: 6px;
+animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+left: 6px;
+animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+left: 26px;
+animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+left: 45px;
+animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+0% {
+transform: scale(0);
+}
+100% {
+transform: scale(1);
+}
+}
+@keyframes lds-ellipsis3 {
+0% {
+transform: scale(1);
+}
+100% {
+transform: scale(0);
+}
+}
+@keyframes lds-ellipsis2 {
+0% {
+transform: translate(0, 0);
+}
+100% {
+transform: translate(19px, 0);
+}
+}
