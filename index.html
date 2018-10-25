@@ -106,16 +106,25 @@
 
     (function () {
         angular.module('app', ['ngAnimate'])
-        .controller('mainCtrl', function($scope, $http) {
+        .controller('mainCtrl', function($scope, $http, $timeout) {
 
             vm = this;
             vm.formExists = true;
             vm.isLoading = false;
             vm.newFormExists = false;
+            vm.time = 0;
+
+            vm.timer = function() {
+                if (vm.time < 5000) {
+                    vm.time += 1000;
+                    $timeout(timer, 1000);
+                }
+            }
 
             vm.submit = function() {
                 vm.formExists = false;
                 vm.isLoading = true;
+                $timeout( vm.gotResponse, 2000 );
             }
 
             vm.gotResponse = function() {
