@@ -2,7 +2,7 @@
     visibility:hidden;
 }
 .card {
-    min-height:200px;
+    min-height:230px;
 }
 .ng-enter.flexCard:nth-of-type(3n+1) {
     animation-delay:500ms;
@@ -15,7 +15,7 @@
 }
 @media screen and (min-width:1000px) {
     .flexCard {
-        max-width:30vw;
+        max-width:32vw;
         padding-left:5px;
         padding-right:5px;
     }
@@ -43,9 +43,9 @@
 }
 @media screen and (max-width: 699px) {
     .flexCard {
-        max-width: 96vh;
-        padding-left:5px;
-        padding-right:5px;
+        max-width: 96vw;
+        padding-left:15px;
+        padding-right:15px;
     }
 }
 .slide {
