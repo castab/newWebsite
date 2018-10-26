@@ -1,6 +1,53 @@
 .slideanim {
     visibility:hidden;
 }
+.card {
+    min-height:200px;
+}
+.ng-enter.flexCard:nth-of-type(3n+1) {
+    animation-delay:500ms;
+}
+.ng-enter.flexCard:nth-of-type(3n+2) {
+    animation-delay:550ms;
+}
+.ng-enter.flexCard:nth-of-type(3n+3) {
+    animation-delay:600ms;
+}
+@media screen and (min-width:1000px) {
+    .flexCard {
+        max-width:30vw;
+        padding-left:5px;
+        padding-right:5px;
+    }
+    .flexCard:nth-of-type(3n+1) {
+        padding-left:10px;
+    }
+    .flexCard:nth-of-type(3n+3) {
+        padding-right:10px;
+    }
+}
+@media screen and (min-width: 700px) and (max-width:999px) {
+    .flexCard {
+        padding-left:5px;
+        padding-right:5px;
+    }
+    .flexCard:nth-of-type(3n+1) {
+        max-width:48vw;
+    }
+    .flexCard:nth-of-type(3n+2) {
+        max-width:48vw;
+    }
+    .flexCard:nth-of-type(3n+3) {
+        max-width:96vw;
+    }
+}
+@media screen and (max-width: 699px) {
+    .flexCard {
+        max-width: 96vh;
+        padding-left:5px;
+        padding-right:5px;
+    }
+}
 .slide {
     /* The name of the animation */
     animation-name: slide;
@@ -18,7 +65,10 @@
     /* The duration of the animation */
     animation-duration: 500ms;
     animation-delay: 500ms;
+    -webkit-animation-delay: 500ms;
+    backface-visibility: hidden;
     -webkit-animation-duration: 500ms;
+    -webkit-backface-visibility: hidden;
     /* Make the element visible */
 }
 .ng-enter-active {
@@ -35,7 +85,7 @@
 @keyframes slide {
     0% {
         opacity: 0;
-        transform: translateY(100%);
+        transform: translateY(60%);
     } 
     100% {
         opacity: 1;
@@ -45,7 +95,7 @@
 @-webkit-keyframes slide {
     0% {
         opacity: 0;
-        -webkit-transform: translateY(100%);
+        -webkit-transform: translateY(60%);
     } 
     100% {
         opacity: 1;
@@ -207,4 +257,25 @@ transform: translate(0, 0);
 100% {
 transform: translate(19px, 0);
 }
+}
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color: #ECEFF1;
+    border-radius: 50%;
+    display: inline-block;
+  }
+.online {
+    animation: pulseOnline 2s infinite;
+}
+@keyframes pulseOnline {
+    0% {
+        background-color:rgb(209, 255, 209);
+    }
+    50% {
+        background-color: #39FF14;
+    }
+    100% {
+        background-color: rgb(209, 255, 209);
+    }
 }
