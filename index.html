@@ -180,7 +180,7 @@
             }
 
             vm.getWeatherData = function () {
-                $http.get("https://supernet.tech/new/api/weather.api.php")
+                $http.get("https://www.supernet.tech/new/api/weather.api.php")
                 .then( function (resp) {
                     vm.weatherData = {
                         temp: ((resp.data.main.temp - 273.15) * 9/5 + 32).toFixed(2),
