@@ -74,12 +74,12 @@ if (!($json = @file_get_contents('weather.json')) === FALSE) {
     // File exists; check for a date
     $response = json_decode($json);
     if (isset($response->{'date_stored'})) {
-        // Date exists, check if it's within 30 days
+        // Date exists, check if it's within 10 minutes
         if (dateDifference($response->{'date_stored'}, date(DATE_RFC2822)) >= 10) {
-            // Saved payload is at least 30 days old, get a new copy
+            // Saved payload is at least 10 minutes old, get a new copy
             getNewWeatherUpdate();
         } else {
-            // Saved payload is within date range, output as JSON
+            // Saved payload is within time threshold, output as JSON
             $response->minutes_until_refresh = (10 - dateDifference($response->{'date_stored'}, date(DATE_RFC2822)));
             http_response_code(200);
             echo json_encode($response, JSON_UNESCAPED_SLASHES);
