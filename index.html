@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-1 col-md-3 invisible"></div>
             <div class="col-10 col-md-6 text-center">
-                <i style="font-size:100px;color:#ECEFF1" class="fas fa-desktop"></i>
+                <i style="font-size:100px;color:#ECEFF1" class="fas fa-info-circle"></i>
             </div>
             <div class="col-1 col-md-3 invisible"></div>
         </div>
@@ -69,7 +69,7 @@
     <div class="d-flex flex-wrap flex-fill justify-content-center">
         <div class="flexCard flex-fill" ng-if="vm.newFormExists">
                 <div class="card text-white bg-dark mb-3">
-                    <div class="card-header">Server</div>
+                    <div class="card-header"><i class="fas fa-cog"></i> Server Status</div>
                     <div class="card-body">
                         <div class="row">
                             <h6 class="card-title col-8">Component</h6>
@@ -98,7 +98,7 @@
                     <div class="card-header"><i class="fas fa-cloud-sun"></i> Weather</div>
                     <div class="card-body" ng-if="vm.newFormExists && vm.weatherData !== null">
                         <div class="row">
-                            <h6 class="card-title col-6"><i class="fas fa-thermometer-half"></i> Tempurature:</h6>
+                            <h6 class="card-title col-6"><i class="fas fa-thermometer-half"></i> Temperature:</h6>
                             <div class="col-2 invisible"></div>
                             <h6 class="col-4">{{ vm.weatherData.temp }} &#8457;</h6>
                         </div>
@@ -113,7 +113,7 @@
                             <h6 class="col-4">{{ vm.weatherData.pressure }} kPa</h6>
                         </div>
                         <div class="row">
-                            <h6 class="col-6"><i class="fas fa-wind"></i> Windspeed:</h6>
+                            <h6 class="col-6"><i class="fas fa-wind"></i> Wind Speed:</h6>
                             <div class="col-2 invisible"></div>
                             <h6 class="col-4">{{ vm.weatherData.windSpeed }} mph</h6>
                         </div>
@@ -129,9 +129,9 @@
         </div>
         <div class="flexCard flex-fill" ng-if="vm.newFormExists">
                 <div class="card text-white bg-dark mb-3">
-                    <div class="card-header">Header</div>
+                    <div class="card-header"><i class="fas fa-info"></i> Information</div>
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
+                        <h5 class="card-title">Other Informative Things</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
@@ -180,13 +180,18 @@
             }
 
             vm.getWeatherData = function () {
-                $http.get("https://www.supernet.tech/new/api/weather.api.php")
+                $http.get('api/weather.api.php')
                 .then( function (resp) {
-                    vm.weatherData = {
+                    try {
+                        vm.weatherData = {
                         temp: ((resp.data.main.temp - 273.15) * 9/5 + 32).toFixed(2),
                         humidity: resp.data.main.humidity,
                         pressure: (resp.data.main.pressure/1000).toFixed(2),
                         windSpeed: (resp.data.wind.speed * 2.237).toFixed(2)
+                        }   
+                    } catch {
+                        vm.weatherData = null;
+                        console.log('Error parsing weather data.')
                     }
                 }, function (error) {
                     console.log("Error getting weather data.")
